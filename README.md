@@ -86,6 +86,34 @@ public void testFitsInCage() {
 ```
 ## Running the Test Cases
 
+
+
 To run the test cases, i simply right-click on the file(_BoaTest.java_ here), click on _Coverage As_, and then _1 JUnit Test_.
+
+on the first run 2 out of 2 test cases are passed
+
+<img width="849" alt="image" src="https://user-images.githubusercontent.com/90209818/233391635-c7c02d32-71cb-4633-ab26-df2036c86c0e.png">
+
+## Adding new Method
+
+i add a new method _lengthInches()_ to return the length of the Boa in inches.
+
+```java
+// produces the length of the Boa in inches 
+public int lengthInInches(){ 
+    return this.length*12;
+}
+```
+
+The new test cases defined for the same are as follows:
+
+```java
+@Test
+public void testlengthInInches() {
+    assertEquals("Error in fitsInCage()",24,jen.lengthInInches());
+    assertEquals("Error in fitsInCage()",36,ken.lengthInInches());
+}
+```
+The test case pass successfully as shown below
 
 ![WhatsApp Image 2023-04-20 at 15 26 19](https://user-images.githubusercontent.com/90209818/233388246-494ca457-a32b-4e7c-b66d-68cfb2398ea3.jpg)
