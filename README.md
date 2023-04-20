@@ -1,11 +1,9 @@
 # Lab-8_202001170
 
-<h1>Name:KEVIN RAVAL</h1>
-<h1>ID: 202001170</h1>
+<h4>Name:KEVIN RAVAL</h4>
+<h4>ID: 202001170</h4>
+<h4>Unit Testing with JUnit</h4>
 <hr>
-<h2>Unit Testing with JUnit</h2>
-<br>
-
 <h3>Creating Java Package and Boa Class</h3>
 <p> i created a new eclipse project with name Lab8_202001170 and then create package,create class for Boa, the code is as follow</p>
 
@@ -32,6 +30,7 @@ public class Boa {
 	}
 }
 ```
+<hr>
 <h3>Creating a JUnit Test Class in Eclipse</h3>
 
 i created testcase file tests.java for Boa.java
