@@ -5,15 +5,87 @@
 <hr>
 <h2>Unit Testing with JUnit</h2>
 <br>
-<h3>1. Create a new Eclipse project, and within the project create a package.</h3>
-<br>
 
-![image](https://user-images.githubusercontent.com/90209818/233313642-7e307736-8894-4bf4-9db4-e41285f7bba5.png)
+<h3>Creating Java Package and Boa Class</h3>
+<p> i created a new eclipse project with name Lab8_202001170 and then create package,create class for Boa, the code is as follow</p>
 
-<h3> 2. Create a class for a Boa:</h3>
-![image](https://user-images.githubusercontent.com/90209818/233318712-5fcc6920-b661-47ed-b71c-06e189831725.png)
+```java
+package tests;
 
-<h3>3. Follow the instructions in the JUnit tutorial in the section “Creating a JUnit Test Case in
-Eclipse”. You’ll be creating a test case for the class Boa. When you’re asked to select
-test method stubs, select both isHealthy() and fitsInCage(int).</h3>
+public class Boa {
+	private String name; 
+	private int length; // the length of the boa, in feet 
+	private String favoriteFood; 
+	public Boa (String name, int length, String favoriteFood){
+		this.name = name; 
+		this.length = length; 
+		this.favoriteFood = favoriteFood; 
+	} 
+	 // returns true if this boa constrictor is healthy 
+	public boolean isHealthy(){ 
+		return this.favoriteFood.equals("granola bars");
+	} 
+	// returns true if the length of this boa constrictor is 
+	// less than the given cage length 
+	public boolean fitsInCage(int cageLength){
+		return this.length < cageLength; 
+	}
+}
+```
+<h3>Creating a JUnit Test Class in Eclipse</h3>
 
+i created testcase file tests.java for Boa.java
+
+After configuring the test case file, i define the _setUp()_ function as follows
+
+```java
+package tests;
+import org.junit.Before;
+import org.junit.Test;
+public class tests {
+	Boa jen,ken;
+	
+	@Before
+	public void setUp() throws Exception { 
+		jen = new Boa("Jennifer", 2, "grapes");
+		ken = new Boa ("Kenneth", 3, "granola bars");
+	} 
+}
+```
+## Testing _Boa_ class methods
+
+### _isHealthy()_ method
+
+It is important to note that the _isHealthy()_ function does not take any parameters. Due to this, the only test cases possible are to call the method on _Boa_ objects _"jen"_ and _"ken"_.  
+Thus, the test cases defined in the _testIsHealthy()_ test function is as follows:
+
+```java
+  @Test
+  public void testIsHealthy() {
+      assertEquals("Error in isHealthy()",false, jen.isHealthy());
+      assertEquals("Error in isHealthy()",true, ken.isHealthy());
+  }
+```
+### _FitsInCage()_ method
+
+The _FitsInCage()_ function takes an integer parameter as input and hence can have a range of test-cases possible.  
+Although _jen_ and _ken_ both will be executing the same function definition for _FitsInCage(<cage_length>)_ function call, it is better to call methods from both the instances to ensure independency of the function definition from the instance.
+
+The test-cases defined can thus go as follows:
+
+```java
+@Test
+public void testFitsInCage() {
+    assertEquals("Error in fitsInCage()",true,jen.fitsInCage(5));  // For length of cage greater than jen's boa
+    assertEquals("Error in fitsInCage()",false,jen.fitsInCage(2)); // For length of cage equal to jen's boa
+    assertEquals("Error in fitsInCage()",false,jen.fitsInCage(1)); // For length of cage less than jen's boa
+    assertEquals("Error in fitsInCage()",false,ken.fitsInCage(2)); // For length of cage less than ken's boa
+    assertEquals("Error in fitsInCage()",false,ken.fitsInCage(3)); // For length of cage equal to ken's boa
+    assertEquals("Error in fitsInCage()",true,ken.fitsInCage(5));  // For length of cage greater than ken's boa
+}
+```
+## Running the Test Cases
+
+To run the test cases, i simply right-click on the file(_BoaTest.java_ here), click on _Coverage As_, and then _1 JUnit Test_.
+
+![WhatsApp Image 2023-04-20 at 15 26 19](https://user-images.githubusercontent.com/90209818/233388246-494ca457-a32b-4e7c-b66d-68cfb2398ea3.jpg)
